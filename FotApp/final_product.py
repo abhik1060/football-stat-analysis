@@ -3,11 +3,26 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import datetime
+import os
 
 ### Tab 1 Player stats H2H
 @st.cache_data
 def load_data1():
-    df = pd.read_csv('epl_final.csv')
+    contents = os.listdir()
+    print("Contents of Current Directory:")
+    for item in contents:
+        print(item)
+
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the full path to the CSV file
+    csv_path = os.path.join(script_dir, 'epl_final.csv')
+
+    # Read the CSV file
+    df = pd.read_csv(csv_path)
+
+    #df = pd.read_csv('epl_final.csv')
     # Convert MatchDate to datetime
     df['MatchDate'] = pd.to_datetime(df['MatchDate'], format='%d-%m-%Y')
     return df
