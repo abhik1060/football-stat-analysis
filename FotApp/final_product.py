@@ -156,7 +156,16 @@ def main1():
 ### Tab 2 Team stats H2H
 @st.cache_data
 def load_data2():
-    return pd.read_csv('cleaned_Data_till_2024-25.csv')
+    contents = os.listdir()
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the full path to the CSV file
+    csv_path = os.path.join(script_dir, 'cleaned_Data_till_2024-25.csv')
+
+    # Read the CSV file
+    df = pd.read_csv(csv_path)
+    return df
 
 # Main dashboard function
 def main2():
